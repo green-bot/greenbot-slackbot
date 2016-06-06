@@ -1,0 +1,21 @@
+[{
+  "default_cmd": "npm start",
+  "default_path": "./node_modules/greenbot-slackbot",
+  "default_settings": [
+    {
+    "name": "SLACK_CHANNEL_ID",
+    "value": "Channel ID in slack that the bot will echo to",
+    "type": "text"
+  },
+    {
+    "name": "SLACK_API_TOKEN",
+    "value": "Your API Token for Slack",
+    "type": "text"
+  }],
+  "desc": "A Greenbot bot that forwards standard in to Slack; forwards Slack to standard out.",
+  "icon_class": "slack",
+  "name": "greenbot-slackbot",
+  "owner_cmd": "",
+  "short_desc": "A Greenbot bot that forwards standard in to Slack; forwards Slack to standard out.",
+  "repo_link": "https://github.com/green-bot/greenbot-slackbot"
+}]
