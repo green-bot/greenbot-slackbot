@@ -1,7 +1,3 @@
-var prompt = require('prompt');
-var Promise = require('bluebird');
-Promise.promisifyAll(prompt);
-
 var CHANNEL_ID = process.env.SLACK_CHANNEL_ID 
 if (!CHANNEL_ID) {
   throw new Error('SLACK_CHANNEL_ID env variable not defined')
@@ -17,6 +13,7 @@ var os = require('os');
 
 var controller = Botkit.slackbot({
     debug: false,
+    log: false
 });
 
 var bot = controller.spawn({
@@ -24,32 +21,18 @@ var bot = controller.spawn({
 }).startRTM();
 
 controller.on('ambient,mention,direct_mention,direct_message', function(bot, message) {
-  console.log(JSON.stringify(message))
+  console.log(message.text)
 })
 
-setTimeout(function() {
-  console.log('talking')
-  bot.say({
-    text: 'I am talking',
-    channel: CHANNEL_ID
-  })
-}, 1000)
-
-prompt.start()
-prompt.message = ''
-prompt.delimiter = ''
-
-var choicesSchema = {
-  description: '?',
-  type: 'string',
-  required: true
-}
+var readLine = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 var handleChoice = function() {
-  prompt.getAsync(choicesSchema).then(function(result){
-    answer = result.question
+  readLine.question('', function(answer) {
     if(answer === 'quit'){
-      prompt.stop()
+      readline.close()
       return
     }
     bot.say({
@@ -57,7 +40,7 @@ var handleChoice = function() {
       channel: CHANNEL_ID
     });
     handleChoice();
-  });
+  })
 }
 
 handleChoice();

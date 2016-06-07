@@ -1,6 +1,6 @@
 {
   "name": "greenbot-slackbot",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "A Greenbot bot that forwards standard in to Slack; forwards Slack to standard out.",
   "main": "slack-bot.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "author": "Thomas Howe",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.4.0",
     "botkit": "^0.2.0",
     "prompt": "^1.0.0"
   }
