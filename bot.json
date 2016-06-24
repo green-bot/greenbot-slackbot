@@ -3,13 +3,13 @@
   "default_path": "./node_modules/greenbot-slackbot",
   "default_settings": [
     {
-    "name": "SLACK_CHANNEL_ID",
-    "value": "Channel ID in slack that the bot will echo to",
+    "name": "SLACK_ANNOUNCE_CHANNEL",
+    "value": "Channel name in Slack where the bot will announce new sessions",
     "type": "text"
   },
     {
     "name": "SLACK_API_TOKEN",
-    "value": "Your API Token for Slack",
+    "value": "Your API Token for Slack. Note: must be a user token, not a bot token.",
     "type": "text"
   }],
   "desc": "A Greenbot bot that forwards standard in to Slack; forwards Slack to standard out.",
