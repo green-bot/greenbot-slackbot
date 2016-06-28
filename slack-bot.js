@@ -87,7 +87,7 @@ var handleChoice = function(channel) {
 }
 
 createAndJoinChannel(SESSION_CHANNEL_NAME).then(function(channel) { 
-// delay a little bit so rtm connection can get established
+  // delay a little bit so rtm connection can get established
   setTimeout(announce.bind(null, channel.id), 1000)
 
   controller.on('ambient,mention,direct_mention,direct_message', function(bot, message) {
