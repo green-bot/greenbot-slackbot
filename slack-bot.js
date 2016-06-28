@@ -60,17 +60,16 @@ var bot = controller.spawn({
   token: process.env.SLACK_API_TOKEN
 }).startRTM();
 
-function announce() {
+function announce(sessionChannelId) {
   joinChannel(ANNOUNCE_CHANNEL_NAME).then(function(channel) {
+    // the format <#CHANNEL_ID> shows a clickable channel link
+    // in the Slack client
     bot.say({
-      text: "New conversation in #" + SESSION_CHANNEL_NAME,
+      text: "New conversation in <#" + sessionChannelId + ">",
       channel: channel.id
     });
   })
 }
-
-// delay a little bit so rtm connection can get established
-setTimeout(announce, 1000)
 
 var readLine = require('readline').createInterface({
   input: process.stdin,
@@ -88,6 +87,9 @@ var handleChoice = function(channel) {
 }
 
 createAndJoinChannel(SESSION_CHANNEL_NAME).then(function(channel) { 
+// delay a little bit so rtm connection can get established
+  setTimeout(announce.bind(null, channel.id), 1000)
+
   controller.on('ambient,mention,direct_mention,direct_message', function(bot, message) {
     if (message.channel === channel.id ) {
       console.log(message.text)
